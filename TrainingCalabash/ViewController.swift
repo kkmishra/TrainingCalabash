@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
-    let validUsers = ["kuldeep" : "1234", "pallavi" : "1111"]
+    let validUsers = ["kuldeep" : "1234", "pallavi" : "1111", "praveen" : "0000"]
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var login: UIButton!
 
 //     MARK: segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if validUsers[userName.text!] == password.text! {
+        if validUsers[userName.text!.lowercaseString] == password.text! {
             return true
         }
         showErrorAlert()
@@ -38,5 +39,17 @@ class ViewController: UIViewController {
         //Present the AlertController
         self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
+    
+// MARK: textField delegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == userName {
+            password.becomeFirstResponder()
+        } else if textField == password {
+            shouldPerformSegueWithIdentifier("showFirstViewController", sender: nil)
+        }
+        return true
+    }
+    
 }
 
