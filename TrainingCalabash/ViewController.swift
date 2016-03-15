@@ -13,7 +13,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let validUsers = ["kuldeep" : "1234", "pallavi" : "1111", "praveen" : "0000"]
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!
-    @IBOutlet weak var login: UIButton!
 
 //     MARK: segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -24,6 +23,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        return login()
+    }
+    
+    func login() -> Bool {
         if validUsers[userName.text!.lowercaseString] == password.text! {
             return true
         }
@@ -46,7 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if textField == userName {
             password.becomeFirstResponder()
         } else if textField == password {
-            shouldPerformSegueWithIdentifier("showFirstViewController", sender: nil)
+            login()
         }
         return true
     }

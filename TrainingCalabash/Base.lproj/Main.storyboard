@@ -70,7 +70,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="Put-bT-LZg"/>
                     <connections>
-                        <outlet property="login" destination="E9O-46-o6Y" id="8N7-5F-Cud"/>
                         <outlet property="password" destination="Aev-JP-let" id="f10-FJ-HWG"/>
                         <outlet property="userName" destination="tjm-zO-MFZ" id="EAm-AL-qcQ"/>
                     </connections>
